@@ -27,7 +27,7 @@ class TextInput extends PureComponent {
   render() {
 
     const { mensaje, procesarMensajeUsuario } = this.props;
-    const { responderAEscritura, responderACambioDeEnfoque } = this;
+    const { responderAEscritura } = this;
 
     return (
       <div className="Input">
