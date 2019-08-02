@@ -1,0 +1,28 @@
+@import "../../../assets/sass/global.sass";
+
+.button
+  border: 0
+  color: transparent
+  cursor: pointer
+
+.button-main
+  display: block
+  width: 33%
+  @media screen and (max-width: 768px)
+    width: 100%
+  @media only screen and (orientation: landscape)
+    margin-bottom: 3rem
+  height: 6rem
+  background-color: transparent
+  border: 2px solid $color-secondary
+  border-radius: 1rem
+  color: whitesmoke
+  font-weight: bolder
+  font-size: 2rem
+  line-height: 1.2
+  text-transform: uppercase
+  text-shadow: 1px 2px 4px darken($color-dark, 5%)
+  letter-spacing: 0.5rem
+
+.button-main:hover
+  background-color: $color-secondary

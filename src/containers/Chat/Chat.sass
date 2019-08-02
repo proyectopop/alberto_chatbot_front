@@ -1,0 +1,32 @@
+@import "../../assets/sass/global.sass";
+
+
+.Chat
+  height: 100%
+  width: 100%
+  color: $color-lighter
+  display: flex
+  align-items: center
+  flex-direction: column-reverse
+  +respond(tablet)
+    flex-direction: row
+    height: 100vh
+  &__Izquierda
+    width: 100%
+    height: 100%
+    align-items: center
+    display: flex
+    flex-direction: column
+    justify-content: space-evenly
+    +respond(tablet)
+      width: 50%
+      height: 100vh
+    &__Logo
+      width: 33vw
+      +respond(tablet)
+        width: 20vw
+
+  &__Derecha
+    width: 100%
+    +respond(tablet)
+      width: 50%

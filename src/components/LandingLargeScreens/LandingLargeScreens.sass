@@ -1,0 +1,115 @@
+.foto-a
+  position: absolute;
+  transform: rotate(15deg);
+  left: 100px;
+  top: 50px;
+
+.foto-b
+  position: absolute;
+  transform: rotate(-5deg);
+  left: 150px;
+  bottom: 50px;
+
+.foto-c
+  position: absolute;
+  transform: rotate(-7deg);
+  right: 150px;
+  top: 50px;
+
+.foto-d
+  position: absolute;
+  transform: rotate(2deg);
+  right: 150px;
+  bottom: 50px;
+
+.foto-a-enter
+  position: absolute;
+  left: -200px;
+  opacity: 0;
+  transition: all 1s ease;
+  transition-delay: 400ms;
+  transform: rotateY(140deg);
+  transform: rotateX(200deg);
+  overflow: hidden;
+  transform-origin: center;
+
+.foto-a-enter-active
+  left: 100px;
+  position: absolute;
+  opacity: 1;
+  transform: rotate(15deg);
+
+.foto-a-exit
+  opacity: 1;
+
+
+.foto-b-active
+  opacity: 0;
+  transition: opacity 1s;
+
+.foto-b-enter
+  position: absolute;
+  left: 100px;
+  bottom: -100px;
+  opacity: 0;
+  transition: all 1200ms ease-in-out;
+  transition-delay: 200ms;
+  transform: rotate(200deg);
+  overflow: hidden;
+  transform-origin: center;
+
+.foto-b-enter-active
+  left: 150px;
+  bottom: 50px;
+  position: absolute;
+  opacity: 1;
+  transform: rotate(-5deg);
+
+.foto-b-exit
+  opacity: 1;
+
+.foto-c-active
+  opacity: 0;
+  transition: opacity 1s;
+
+.foto-c-enter
+  position: absolute;
+  right: -50px;
+  bottom: -40px;
+  opacity: 0;
+  transition: all 1s ease-in;
+  transform: rotateY(140deg);
+  transform-origin: center;
+
+.foto-c-enter-active
+  right: 150px;
+  top: 50px;
+  position: absolute;
+  opacity: 1;
+  transform: rotate(-5deg);
+
+.foto-c-exit
+  opacity: 1;
+
+.foto-d-active
+  opacity: 0;
+  transition: opacity 1s;
+
+.foto-d-enter
+  position: absolute;
+  right: 100px;
+  bottom: -100px;
+  opacity: 0;
+  transition: all 1s ease-in;
+  transform: rotateY(140deg);
+  transform-origin: center;
+
+.foto-d-enter-active
+  right: 150px;
+  bottom: 50px;
+  position: absolute;
+  opacity: 1;
+  transform: rotate(2deg);
+
+.foto-d-exit
+  opacity: 1;

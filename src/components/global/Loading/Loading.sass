@@ -1,0 +1,44 @@
+@import "../../../assets/sass/global.sass";
+
+.loading
+  +FlexColumn
+  height: 100%
+  width: 100%
+  position: absolute
+  margin-left: auto
+  margin-right: auto
+
+
+  *
+    margin-top: 2rem
+    margin-bottom: 2rem
+
+
+.loader
+  height: 5px
+  width: 80px
+  left: 5px
+  position: relative
+  overflow: hidden
+  background-color: #ddd
+  border-radius: 3px
+
+.loader:before
+  display: block
+  position: absolute
+  content: ""
+  left: -200px
+  width: 280px
+  height: 5px
+
+  background-color: $color-secondary
+  animation: loading 800ms linear infinite
+
+
+@keyframes loading
+    from {left: -200px; width: 30%;}
+    50% {width: 30%;}
+    70% {width: 70%;}
+    80% { left: 50%;}
+    95% {left: 120%;}
+    to {left: 100%;}

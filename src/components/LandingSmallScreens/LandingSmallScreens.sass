@@ -1,0 +1,40 @@
+@import "../../assets/sass/global.sass";
+
+@keyframes moveSlideshow
+  100%
+    transform: translateX(-66.6666%)
+
+.slideshow
+  height: 118px
+  max-width: 800px;
+  margin: 0 auto
+  position: relative
+  overflow: hidden
+  transform: translate3d(0, 0, 0)
+  border-bottom: 2px solid white
+  border-top: 2px solid white
+
+  &-fotos
+    height: 120px
+    width: 2526px;
+    background: url("../../assets/img/tiradefotos.jpg")
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    transform: translate3d(0, 0, 0)
+    animation: moveSlideshow 30s linear infinite
+
+.LandingSmallScreenContent
+  +FlexRow
+  max-width: 95%
+  margin: auto
+  flex-wrap: wrap
+  text-align: center
+  height: calc(100vh - 200px)
+  .logo
+    padding-top: 3rem
+    width: 35%
+    @media only screen and (orientation: landscape)
+      width: 20%
+      margin-bottom: 3rem

@@ -1,0 +1,42 @@
+import * as actions from '../actions/types';
+
+const initialState = {
+  charlaComenzada: false,
+  charlaTerminada: false,
+  consentimientoDeColaboracion: true,
+  genero: 'I',
+};
+
+export default function general(state = initialState, action) {
+
+  switch (action.type) {
+
+    case actions.GENERAL_MARCAR_CHARLA_COMENZADA:
+      return {
+        ...state,
+        charlaComenzada: true,
+      };
+
+    case actions.GENERAL_MARCAR_CHARLA_TERMINADA:
+      return {
+        ...state,
+        charlaTerminada: true,
+      };
+
+    case actions.GENERAL_ALTERNAR_CONSENTIMIENTO_DE_COLABORACION:
+      return {
+        ...state,
+        consentimientoDeColaboracion: !state.consentimientoDeColaboracion,
+      };
+
+    case actions.GENERAL_SELECCIONAR_GENERO:
+      return {
+        ...state,
+        genero: action.payload,
+      };
+
+    default:
+      return state;
+  }
+
+}
