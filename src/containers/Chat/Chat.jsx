@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import uuid from 'uuidv4';
 import { connect } from 'react-redux';
 import { charlaUsuarieEnvioNuevoMensaje } from '../../redux/actions/charla';
+import { generalEstablecerSessionId } from '../../redux/actions/general';
 import Logo from '../../components/Logo/Logo';
 import ChatBox from '../../components/ChatBox/ChatBox';
 import Share from '../../components/Share/Share';
@@ -12,6 +14,12 @@ class Chat extends PureComponent {
 
   state = {
     mensajeUsuario: '',
+  }
+
+  componentDidMount() {
+    const { establecerSessionId } = this.props;
+
+    establecerSessionId(uuid());
   }
 
   manejarEscritura = (nuevoValor) => {
@@ -75,12 +83,14 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   usuarieEnvioMensaje: mensaje => dispatch(charlaUsuarieEnvioNuevoMensaje(mensaje)),
+  establecerSessionId: id => dispatch(generalEstablecerSessionId(id)),
 });
 
 Chat.propTypes = {
   anchoDisponible: PropTypes.number.isRequired,
   campoDeTextoEnfocado: PropTypes.bool.isRequired,
-  estadoDeAlberto: PropTypes.string,
+  establecerSessionId: PropTypes.func.isRequired,
+  estadoDeAlberto: PropTypes.string.isRequired,
   historial: PropTypes.arrayOf(PropTypes.object).isRequired,
   usuarieEnvioMensaje: PropTypes.func.isRequired,
 };

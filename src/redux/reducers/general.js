@@ -5,6 +5,7 @@ const initialState = {
   charlaTerminada: false,
   consentimientoDeColaboracion: true,
   genero: 'I',
+  sesion: 1,
 };
 
 export default function general(state = initialState, action) {
@@ -15,6 +16,12 @@ export default function general(state = initialState, action) {
       return {
         ...state,
         charlaComenzada: true,
+      };
+
+    case actions.GENERAL_ESTABLECER_SESSION_ID:
+      return {
+        ...state,
+        sesion: action.payload,
       };
 
     case actions.GENERAL_MARCAR_CHARLA_TERMINADA:
