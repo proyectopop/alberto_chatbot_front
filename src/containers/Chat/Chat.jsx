@@ -47,6 +47,7 @@ class Chat extends PureComponent {
     const {
       anchoDisponible, estadoDeAlberto, historial,
     } = this.props;
+    const { manejarEscritura, manejarUsuarieEnvioMensaje } = this;
 
     return (
       <section className="Chat fade">
@@ -63,8 +64,8 @@ class Chat extends PureComponent {
             estadoDeAlberto={estadoDeAlberto}
             historial={historial}
             mensaje={mensajeUsuario}
-            manejarEscritura={this.manejarEscritura}
-            procesarMensajeUsuario={this.manejarUsuarieEnvioMensaje}
+            manejarEscritura={manejarEscritura}
+            procesarMensajeUsuario={manejarUsuarieEnvioMensaje}
           />
         </div>
 
