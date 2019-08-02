@@ -5,9 +5,9 @@ export const charlaAgregarNuevoMensaje = (nuevoMensaje, autor) => ({
   payload: { mensaje: nuevoMensaje, autorDelMensaje: autor },
 });
 
-export const charlaUsuarieEnvioNuevoMensaje = mensajeDelUsuarie => ({
+export const charlaUsuarieEnvioNuevoMensaje = (sesionId, mensajeDelUsuarie) => ({
   type: types.CHARLA_USUARIE_ENVIO_MENSAJE,
-  payload: { mensaje: mensajeDelUsuarie },
+  payload: { sesion: sesionId, mensaje: mensajeDelUsuarie },
 });
 
 export const charlaEstablecerContextoGeneroMasculino = () => ({

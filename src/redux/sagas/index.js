@@ -30,6 +30,7 @@ function* procesarMensajeDeUsuarie(action) {
     type: actions.ESTAD0_ESTABLECER_ALBERTO_ESCRIBIENDO,
   });
 
+  const { sesion } = action.payload;
   const mensaje = action.payload.mensaje.trim();
 
   yield put({
@@ -43,7 +44,7 @@ function* procesarMensajeDeUsuarie(action) {
     },
   });
 
-  const respuesta = yield api.procesarMensaje(mensaje);
+  const respuesta = yield api.procesarMensaje(sesion, mensaje);
 
   const resultadoDeSimulacion = simularDelay(respuesta.queryResult.fulfillmentText);
 

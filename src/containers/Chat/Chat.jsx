@@ -27,10 +27,10 @@ class Chat extends PureComponent {
   }
 
   manejarUsuarieEnvioMensaje = () => {
-    const { usuarieEnvioMensaje } = this.props;
+    const { sesion, usuarieEnvioMensaje } = this.props;
     const { mensajeUsuario } = this.state;
 
-    usuarieEnvioMensaje(mensajeUsuario);
+    usuarieEnvioMensaje(sesion, mensajeUsuario);
 
     this.setState({ mensajeUsuario: '' });
   }
@@ -80,10 +80,11 @@ const mapStateToProps = state => ({
   campoDeTextoEnfocado: state.cliente.campoDeTextoEnfocado,
   historial: state.charla.historial,
   estadoDeAlberto: state.estado.estado,
+  sesion: state.general.sesion,
 });
 
 const mapDispatchToProps = dispatch => ({
-  usuarieEnvioMensaje: mensaje => dispatch(charlaUsuarieEnvioNuevoMensaje(mensaje)),
+  usuarieEnvioMensaje: (sesion, mensaje) => dispatch(charlaUsuarieEnvioNuevoMensaje(sesion, mensaje)),
   establecerSessionId: id => dispatch(generalEstablecerSessionId(id)),
 });
 
@@ -93,6 +94,7 @@ Chat.propTypes = {
   establecerSessionId: PropTypes.func.isRequired,
   estadoDeAlberto: PropTypes.string.isRequired,
   historial: PropTypes.arrayOf(PropTypes.object).isRequired,
+  sesion: PropTypes.string.isRequired,
   usuarieEnvioMensaje: PropTypes.func.isRequired,
 };
 

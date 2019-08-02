@@ -5,7 +5,7 @@ const initialState = {
   charlaTerminada: false,
   consentimientoDeColaboracion: true,
   genero: 'I',
-  sesion: 1,
+  sesion: '1',
 };
 
 export default function general(state = initialState, action) {
