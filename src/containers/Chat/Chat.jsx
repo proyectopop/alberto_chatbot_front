@@ -64,7 +64,7 @@ class Chat extends PureComponent {
             historial={historial}
             mensaje={mensajeUsuario}
             manejarEscritura={this.manejarEscritura}
-            procesarMensajeUsuario={() => this.manejarUsuarieEnvioMensaje()}
+            procesarMensajeUsuario={this.manejarUsuarieEnvioMensaje}
           />
         </div>
 
