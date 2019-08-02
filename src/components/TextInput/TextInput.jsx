@@ -38,8 +38,6 @@ class TextInput extends PureComponent {
           placeholder="Escribí tu mensaje acá"
           onChange={responderAEscritura}
           onKeyDown={responderAEscritura}
-          onFocus={responderACambioDeEnfoque}
-          onBlur={responderACambioDeEnfoque}
           type="text"
           value={mensaje}
         />
