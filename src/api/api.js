@@ -32,3 +32,18 @@ export async function establecerContexto(contexto = {}) {
   return respuesta;
 
 }
+
+export async function chequearSiHayImagenAdjunta(frase = '') {
+
+  const fraseCodificadaEnJson = JSON.stringify({ frase });
+
+  const respuesta = await fetch(`${API_BASE_URL}/alberto/imagenes`, {
+    ...API_HEADERS,
+    method: 'POST',
+    body: fraseCodificadaEnJson,
+  })
+    .then(res => res.json());
+
+  return respuesta;
+
+}

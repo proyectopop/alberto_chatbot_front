@@ -15,7 +15,18 @@ const History = ({ historial }) => (
     {historial.map(({ autor, mensaje }) => (
       <ScrollIntoView style={{ width: '100%' }} key={mensaje.id}>
         <div className={classNames(autor)}>
-          <span>{mensaje.texto}</span>
+          <span>
+            {mensaje.texto}
+            {mensaje.imagenAdjunta
+            && (
+            <img
+              alt="Imagen adjunta"
+              className="ImagenAdjunta"
+              src={mensaje.imagenAdjunta}
+            />
+            ) }
+          </span>
+
         </div>
       </ScrollIntoView>
     ))}

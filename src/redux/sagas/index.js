@@ -46,10 +46,15 @@ function* procesarMensajeDeUsuarie(action) {
 
   const respuesta = yield api.procesarMensaje(sesion, mensaje);
 
-  const resultadoDeSimulacion = simularDelay(respuesta.queryResult.fulfillmentText);
 
+  // Simular delay
+  const resultadoDeSimulacion = simularDelay(respuesta.queryResult.fulfillmentText);
   yield delay(resultadoDeSimulacion);
 
+  // Chequear si tiene imágen adjunta
+
+  const imagenAdjunta = yield api.chequearSiHayImagenAdjunta(respuesta.queryResult.fulfillmentText);
+  console.log(imagenAdjunta.src);
   yield put({
     type: actions.CHARLA_AGREGAR_NUEVO_MENSAJE_AL_HISTORIAL,
     payload: {
@@ -57,6 +62,7 @@ function* procesarMensajeDeUsuarie(action) {
       mensaje: {
         id: respuesta.responseId,
         texto: respuesta.queryResult.fulfillmentText,
+        imagenAdjunta: imagenAdjunta && imagenAdjunta.src,
       },
     },
   });

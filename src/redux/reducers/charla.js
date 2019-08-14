@@ -18,6 +18,7 @@ export default function charla(state = initialState, action) {
             mensaje: {
               id: action.payload.mensaje.id,
               texto: action.payload.mensaje.texto,
+              imagenAdjunta: action.payload.mensaje.imagenAdjunta,
             },
           },
         ],
