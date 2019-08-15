@@ -1,24 +1,35 @@
 import {
-  all, delay, takeEvery, put,
+  all, delay, takeEvery, put, select,
 } from 'redux-saga/effects';
 import uuid from 'uuidv4';
-import contextos from '../../constants/contextos';
+import generos from '../../constants/generos';
 import simularDelay from './helpers/delay';
+import contextoDeGenero from './helpers/getGenderContext';
 import * as actions from '../actions/types';
 import * as api from '../../api/api';
 
 // TODO --> ERROR HANDLING EN SAGAS
 
-function* esperarPorConexion() {
+function* inicializarChat() {
 
   const estaConectado = yield api.probarSiHayConexion();
 
   if (estaConectado) {
+
     yield put({
       type: actions.ESTAD0_ESTABLECER_ALBERTO_CONECTADO,
     });
-  }
 
+    // Chequear genero
+    const generoSeleccionado = yield select(state => state.general.genero);
+
+    // Si el usuarie quiere ser tratado como hombre o mujer, establecer contexto en DialogFlow
+    if (generoSeleccionado !== generos[0].key) {
+      const sessionId = yield select(state => state.general.sesion);
+
+      yield api.establecerContexto(sessionId, { event: contextoDeGenero(generoSeleccionado) });
+    }
+  }
 }
 
 
@@ -48,13 +59,14 @@ function* procesarMensajeDeUsuarie(action) {
 
 
   // Simular delay
+
   const resultadoDeSimulacion = simularDelay(respuesta.queryResult.fulfillmentText);
   yield delay(resultadoDeSimulacion);
 
   // Chequear si tiene imágen adjunta
 
   const imagenAdjunta = yield api.chequearSiHayImagenAdjunta(respuesta.queryResult.fulfillmentText);
-  console.log(imagenAdjunta.src);
+
   yield put({
     type: actions.CHARLA_AGREGAR_NUEVO_MENSAJE_AL_HISTORIAL,
     payload: {
@@ -72,36 +84,20 @@ function* procesarMensajeDeUsuarie(action) {
   });
 }
 
-function* enviarEvento(nombreDeEvento) {
-  return yield api.establecerContexto({ event: nombreDeEvento });
-}
-
 
 // Watcher Sagas
 
 export function* usuarieEntroAlChat() {
-  yield takeEvery(actions.GENERAL_MARCAR_CHARLA_COMENZADA, esperarPorConexion);
+  yield takeEvery(actions.GENERAL_MARCAR_CHARLA_COMENZADA, inicializarChat);
 }
 
 export function* usarieEnvioMensaje() {
   yield takeEvery(actions.CHARLA_USUARIE_ENVIO_MENSAJE, procesarMensajeDeUsuarie);
 }
 
-export function* establecerGeneroFemenino() {
-  yield takeEvery(actions.CHARLA_ESTABLECER_CONTEXTO_GENERO_FEMENINO,
-    () => enviarEvento(contextos.generoFemenino));
-}
-
-export function* establecerGeneroMasculino() {
-  yield takeEvery(actions.CHARLA_ESTABLECER_CONTEXTO_GENERO_MASCULINO,
-    () => enviarEvento(contextos.generoMasculino));
-}
-
 export default function* rootSaga() {
   yield all([
-    usarieEnvioMensaje(),
     usuarieEntroAlChat(),
-    establecerGeneroFemenino(),
-    establecerGeneroMasculino(),
+    usarieEnvioMensaje(),
   ]);
 }

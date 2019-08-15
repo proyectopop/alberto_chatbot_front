@@ -19,9 +19,9 @@ export async function procesarMensaje(sessionId = 1, text = '') {
   return respuesta;
 }
 
-export async function establecerContexto(contexto = {}) {
+export async function establecerContexto(sessionId = 1, contexto = {}) {
 
-  const contextoCodificadoEnJson = JSON.stringify(contexto);
+  const contextoCodificadoEnJson = JSON.stringify({ sessionId, ...contexto });
 
   const [respuesta] = await fetch(`${API_BASE_URL}/alberto/evento`, {
     ...API_HEADERS,
