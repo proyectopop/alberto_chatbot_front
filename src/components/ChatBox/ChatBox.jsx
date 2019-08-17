@@ -40,7 +40,7 @@ const ajustarTextoSegunEstado = (estadoDeAlberto) => {
 const ChatBox = (props) => {
 
   const {
-    estadoDeAlberto, historial,
+    charlaTerminada, estadoDeAlberto, historial,
     mensaje, manejarEscritura, procesarMensajeUsuario,
   } = props;
 
@@ -69,11 +69,16 @@ const ChatBox = (props) => {
       </div>
 
       <div className="Chatbox__Pie">
-        <Input
-          mensaje={mensaje}
-          manejarEscritura={manejarEscritura}
-          procesarMensajeUsuario={procesarMensajeUsuario}
-        />
+        {!charlaTerminada
+              && (
+              <Input
+                mensaje={mensaje}
+                manejarEscritura={manejarEscritura}
+                procesarMensajeUsuario={procesarMensajeUsuario}
+              />
+              )
+      }
+
       </div>
 
     </div>
@@ -83,6 +88,7 @@ const ChatBox = (props) => {
 export default ChatBox;
 
 ChatBox.propTypes = {
+  charlaTerminada: PropTypes.bool.isRequired,
   estadoDeAlberto: PropTypes.string.isRequired,
   historial: PropTypes.arrayOf(PropTypes.object).isRequired,
   mensaje: PropTypes.string.isRequired,

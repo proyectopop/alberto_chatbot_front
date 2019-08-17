@@ -17,7 +17,7 @@ function* inicializarChat() {
   if (estaConectado) {
 
     yield put({
-      type: actions.ESTAD0_ESTABLECER_ALBERTO_CONECTADO,
+      type: actions.ESTADO_ESTABLECER_ALBERTO_CONECTADO,
     });
 
     // Chequear genero
@@ -37,8 +37,10 @@ function* procesarMensajeDeUsuarie(action) {
 
   if (!action.payload.mensaje) return;
 
+  // Establecer estado "escribiendo""
+
   yield put({
-    type: actions.ESTAD0_ESTABLECER_ALBERTO_ESCRIBIENDO,
+    type: actions.ESTADO_ESTABLECER_ALBERTO_ESCRIBIENDO,
   });
 
   const { sesion } = action.payload;
@@ -58,6 +60,7 @@ function* procesarMensajeDeUsuarie(action) {
   const respuesta = yield api.procesarMensaje(sesion, mensaje);
 
 
+  // TODO --> Extraer esta lógica a 3 funciones distintas
   // Simular delay
 
   const resultadoDeSimulacion = simularDelay(respuesta.queryResult.fulfillmentText);
@@ -79,8 +82,31 @@ function* procesarMensajeDeUsuarie(action) {
     },
   });
 
+  // Chequear si este mensaje marca el fin de la conversación
+
+  const esElFinDeLaConversacion = respuesta.queryResult.diagnosticInfo
+    && respuesta.queryResult.diagnosticInfo.fields
+    && respuesta.queryResult.diagnosticInfo.fields.end_conversation;
+
+  if (esElFinDeLaConversacion) {
+
+    yield all(
+      [
+        put({
+          type: actions.GENERAL_MARCAR_CHARLA_TERMINADA,
+        }),
+        put({
+          type: actions.ESTADO_ESTABLECER_ALBERTO_DESCONECTADO,
+        }),
+      ],
+    );
+
+    return;
+  }
+
+  // Volver a estado "conectado"
   yield put({
-    type: actions.ESTAD0_ESTABLECER_ALBERTO_CONECTADO,
+    type: actions.ESTADO_ESTABLECER_ALBERTO_CONECTADO,
   });
 }
 

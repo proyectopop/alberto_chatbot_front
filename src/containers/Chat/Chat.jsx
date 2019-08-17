@@ -45,7 +45,7 @@ class Chat extends PureComponent {
   render() {
     const { mensajeUsuario } = this.state;
     const {
-      anchoDisponible, estadoDeAlberto, historial,
+      anchoDisponible, charlaTerminada, estadoDeAlberto, historial,
     } = this.props;
     const { manejarEscritura, manejarUsuarieEnvioMensaje } = this;
 
@@ -61,12 +61,14 @@ class Chat extends PureComponent {
 
         <div className="Chat__Derecha">
           <ChatBox
+            charlaTerminada={charlaTerminada}
             estadoDeAlberto={estadoDeAlberto}
             historial={historial}
             mensaje={mensajeUsuario}
             manejarEscritura={manejarEscritura}
             procesarMensajeUsuario={manejarUsuarieEnvioMensaje}
           />
+          { charlaTerminada && 'ALBERTO SE CALENTÓ Y SE FUE. CHARLA TERMINADA.'}
         </div>
 
 
@@ -78,13 +80,14 @@ class Chat extends PureComponent {
 
 const mapStateToProps = state => ({
   campoDeTextoEnfocado: state.cliente.campoDeTextoEnfocado,
+  charlaTerminada: state.general.charlaTerminada,
   historial: state.charla.historial,
   estadoDeAlberto: state.estado.estado,
   sesion: state.general.sesion,
 });
 
 const mapDispatchToProps = dispatch => ({
-  usuarieEnvioMensaje: (sesion, mensaje) => dispatch(charlaUsuarieEnvioNuevoMensaje(sesion, mensaje)),
+  usuarieEnvioMensaje: (sesion, msj) => dispatch(charlaUsuarieEnvioNuevoMensaje(sesion, msj)),
   establecerSessionId: id => dispatch(generalEstablecerSessionId(id)),
 });
 
@@ -93,9 +96,14 @@ Chat.propTypes = {
   campoDeTextoEnfocado: PropTypes.bool.isRequired,
   establecerSessionId: PropTypes.func.isRequired,
   estadoDeAlberto: PropTypes.string.isRequired,
+  charlaTerminada: PropTypes.bool,
   historial: PropTypes.arrayOf(PropTypes.object).isRequired,
   sesion: PropTypes.string.isRequired,
   usuarieEnvioMensaje: PropTypes.func.isRequired,
+};
+
+Chat.defaultProps = {
+  charlaTerminada: false,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);
