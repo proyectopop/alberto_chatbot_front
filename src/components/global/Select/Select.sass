@@ -1,23 +1,26 @@
 select
+  width: 25%
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   background-position-y: calc(100% - 10px);
   background-repeat: no-repeat;
-  outline: 0
-  border: 0
-  font-family: inherit
   background-color: transparent
-  width: 25%
-  padding: 4px 0
-  font-size: 1.4rem
+  border: 0
   color: whitesmoke
+  cursor: pointer
+  font-family: inherit
+  font-size: 1.4rem
+  font-weight: bold
+  outline: 0
+  padding: 4px 0
   @media screen and (max-width: 768px)
     width: 29%
     font-size: 1.3rem
 
 
 select:focus
+  cursor: pointer
   outline: none
 
 .selectfield
@@ -26,16 +29,16 @@ select:focus
   &::after
       position: absolute
       top: 1.1em
-      right: 4rem
+      right: 5rem
       @media screen and (max-width: 340px)
         right: -2px
       @media screen and (min-width: 341px) and (max-width: 768px)
-        right: 4px
+        right: -1px
       width: 0
       height: 0
       padding: 0
       content: ''
-      border-left: .25em solid transparent
-      border-right: .25em solid transparent
-      border-top: .375em solid whitesmoke
+      border-left: .33em solid transparent
+      border-right: .33em solid transparent
+      border-top: .400em solid whitesmoke
       pointer-events: none
