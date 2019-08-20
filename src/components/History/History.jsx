@@ -13,7 +13,11 @@ const History = ({ historial }) => (
   <div className="ChatHistory">
 
     {historial.map(({ autor, mensaje }) => (
-      <ScrollIntoView style={{ width: '100%' }} key={mensaje.id}>
+      <ScrollIntoView
+        key={mensaje.id}
+        options={{ behavior: 'smooth', scrollMode: 'always' }}
+        style={{ width: '100%' }}
+      >
         <div className={classNames(autor)}>
           <span>
             {mensaje.texto}
