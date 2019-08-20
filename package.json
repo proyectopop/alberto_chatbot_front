@@ -13,6 +13,7 @@
     "react-scripts": "3.0.1",
     "react-scroll-into-view-if-needed": "^2.1.7",
     "react-share": "^3.0.0",
+    "react-simple-popover": "^0.2.4",
     "react-transition-group": "^4.2.0",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.4",
