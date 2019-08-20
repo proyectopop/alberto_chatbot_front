@@ -43,6 +43,11 @@ export default class LandingSmallScreens extends PureComponent {
             text="Charlar con Alberto"
           />
 
+          <div className="selectfield">
+            <span className="GenderOptionsText">Tratarme según género </span>
+            <Select options={generos} selectHandler={seleccionarGenero} />
+          </div>
+
           <Consent
             alternarConsentimiento={alternarConsentimiento}
             consentimientoDeColaboracion={consentimientoDeColaboracion}
@@ -50,11 +55,6 @@ export default class LandingSmallScreens extends PureComponent {
             opcionB="NO"
             texto="Enviar mis interacciones para mejorar el chatbot"
           />
-
-          <div className="selectfield">
-            <span className="GenderOptionsText">Tratarme según género </span>
-            <Select options={generos} selectHandler={seleccionarGenero} />
-          </div>
 
         </div>
 

@@ -90,6 +90,11 @@ export default class LandingLargeScreens extends Component {
 
               <div className="LandingOptions">
 
+                <div className="selectfield">
+                  <span className="GenderOptionsText">El chatbot debe tratarme según género </span>
+                  <Select options={generos} selectHandler={seleccionarGenero} />
+                </div>
+
                 <Consent
                   alternarConsentimiento={alternarConsentimiento}
                   consentimientoDeColaboracion={consentimientoDeColaboracion}
@@ -98,10 +103,6 @@ export default class LandingLargeScreens extends Component {
                   texto="Enviar mis interacciones para mejorar el chatbot"
                 />
 
-                <div className="selectfield">
-                  <span className="GenderOptionsText">El chatbot debe tratarme según género </span>
-                  <Select options={generos} selectHandler={seleccionarGenero} />
-                </div>
 
               </div>
 
