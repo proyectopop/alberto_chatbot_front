@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Popover from 'react-simple-popover';
 import { CSSTransition } from 'react-transition-group';
 
 import Loading from '../global/Loading/Loading';
@@ -8,6 +9,7 @@ import Consent from '../Consent/Consent';
 import Select from '../global/Select/Select';
 import Logo from '../Logo/Logo';
 
+import pregunta from '../../assets/img/pregunta.svg';
 import argentinos from '../../assets/img/argentinos.png';
 import bigoteRockero from '../../assets/img/bigoterockero.png';
 import dylan from '../../assets/img/dylan.png';
@@ -68,8 +70,9 @@ export default class LandingLargeScreens extends Component {
 
   render() {
     const {
-      alternarConsentimiento, consentimientoDeColaboracion,
-      generos, seleccionarGenero,
+      alternarConsentimiento, alternarMostrarPopover, consentimientoDeColaboracion,
+      contenidoDelPopoverDeGenero, deberiaMostrarsePopoverDeGenero,
+      estilosDelPopover, generos, seleccionarGenero,
     } = this.props;
     const { shouldShow, triggerAnimations } = this.state;
     const { botonPrincipalSeleccionado } = this;
@@ -91,6 +94,24 @@ export default class LandingLargeScreens extends Component {
               <div className="LandingOptions">
 
                 <div className="selectfield">
+
+                  <Popover
+                    placement="top"
+                    show={deberiaMostrarsePopoverDeGenero}
+                    target={this.genderPopoverTarget}
+                    style={estilosDelPopover}
+                  >
+                    {contenidoDelPopoverDeGenero()}
+                  </Popover>
+
+                  <img
+                    alt="Género: ayuda"
+                    className="SignoDePregunta"
+                    onMouseEnter={() => alternarMostrarPopover('genero')}
+                    onMouseLeave={() => alternarMostrarPopover('genero')}
+                    ref={(node) => { this.genderPopoverTarget = node; }}
+                    src={pregunta}
+                  />
                   <span className="GenderOptionsText">El chatbot debe tratarme según género </span>
                   <Select options={generos} selectHandler={seleccionarGenero} />
                 </div>
@@ -201,12 +222,22 @@ export default class LandingLargeScreens extends Component {
 
 LandingLargeScreens.propTypes = {
   alternarConsentimiento: PropTypes.func.isRequired,
+  alternarMostrarPopover: PropTypes.func.isRequired,
   consentimientoDeColaboracion: PropTypes.bool.isRequired,
+  contenidoDelPopoverDeGenero: PropTypes.func.isRequired,
+  deberiaMostrarsePopoverDeGenero: PropTypes.bool.isRequired,
   establecerContextoDeGenero: PropTypes.func.isRequired,
   generos: PropTypes.arrayOf(PropTypes.shape({
     key: PropTypes.string,
     value: PropTypes.string,
   })).isRequired,
   marcarCharlaComenzada: PropTypes.func.isRequired,
+  estilosDelPopover: PropTypes.shape({
+    borderRadius: PropTypes.string,
+    fontSize: PropTypes.string,
+    letterSpacing: PropTypes.string,
+    lineHeight: PropTypes.number,
+    padding: PropTypes.string,
+  }).isRequired,
   seleccionarGenero: PropTypes.func.isRequired,
 };

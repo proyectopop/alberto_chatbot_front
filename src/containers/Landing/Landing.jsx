@@ -16,8 +16,47 @@ import './Landing.sass';
 
 class Landing extends Component {
 
+  state = {
+    deberiaMostrarsePopoverDeGenero: false,
+  }
+
+   estilosDelPopover = {
+     borderRadius: '6px',
+     fontSize: '1.1rem',
+     letterSpacing: '0.5px',
+     lineHeight: 1.5,
+     padding: '10px',
+   }
+
+   alternarMostrarPopover= (popoverParaAlternar, conTimeOut) => {
+     const { deberiaMostrarsePopoverDeGenero } = this.state;
+
+     if (popoverParaAlternar === 'genero') {
+
+       this.setState({ deberiaMostrarsePopoverDeGenero: !deberiaMostrarsePopoverDeGenero });
+
+       return conTimeOut
+     && setTimeout(() => this.setState({ deberiaMostrarsePopoverDeGenero: false }), 5000);
+     }
+
+     return 'Nada, por ahora';
+   }
+
+
+   contenidoDelPopoverDeGenero = () => (
+     <p>
+    El bot tiene en cuenta el género a la hora de responderte.<br />
+    Por ej., si lo hacés enojar, las respuestas serán más suaves
+    si elegís <i>femenino</i> o <i>indistinto</i>.
+     </p>
+   )
+
+
    establecerContextoDeGenero = () => {
-     const { genero, establecerContextoGeneroMasculino, establecerContextoGeneroFemenino } = this.props;
+     const {
+       genero, establecerContextoGeneroMasculino,
+       establecerContextoGeneroFemenino,
+     } = this.props;
 
      if (genero === 'M') return establecerContextoGeneroMasculino();
      if (genero === 'F') return establecerContextoGeneroFemenino();
@@ -25,32 +64,45 @@ class Landing extends Component {
      return null;
    }
 
+
    render() {
 
      const {
        anchoDisponible, alternarConsentimiento, consentimientoDeColaboracion,
        marcarCharlaComenzada, seleccionarGenero,
      } = this.props;
-     const { establecerContextoDeGenero } = this;
+     const {
+       alternarMostrarPopover, contenidoDelPopoverDeGenero,
+       establecerContextoDeGenero, estilosDelPopover,
+     } = this;
+     const { deberiaMostrarsePopoverDeGenero } = this.state;
 
      return (
        <section id="Landing">
          {anchoDisponible > 768 ? (
            <LandingLarge
              alternarConsentimiento={alternarConsentimiento}
+             alternarMostrarPopover={alternarMostrarPopover}
              consentimientoDeColaboracion={consentimientoDeColaboracion}
+             contenidoDelPopoverDeGenero={contenidoDelPopoverDeGenero}
+             deberiaMostrarsePopoverDeGenero={deberiaMostrarsePopoverDeGenero}
              establecerContextoDeGenero={establecerContextoDeGenero}
              generos={ListaDeGeneros}
              marcarCharlaComenzada={marcarCharlaComenzada}
+             estilosDelPopover={estilosDelPopover}
              seleccionarGenero={seleccionarGenero}
            />
          ) : (
            <LandingSmall
              alternarConsentimiento={alternarConsentimiento}
+             alternarMostrarPopover={alternarMostrarPopover}
              consentimientoDeColaboracion={consentimientoDeColaboracion}
+             contenidoDelPopoverDeGenero={contenidoDelPopoverDeGenero}
+             deberiaMostrarsePopoverDeGenero={deberiaMostrarsePopoverDeGenero}
              establecerContextoDeGenero={establecerContextoDeGenero}
              generos={ListaDeGeneros}
              marcarCharlaComenzada={marcarCharlaComenzada}
+             estilosDelPopover={estilosDelPopover}
              seleccionarGenero={seleccionarGenero}
            />
          )}
