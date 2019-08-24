@@ -26,12 +26,12 @@
     animation: moveSlideshow 30s linear infinite
 
 .LandingSmallScreenContent
-  +FlexRow
+  +FlexColumn
+  height: calc(100vh - 200px)
   max-width: 95%
   margin: auto
-  flex-wrap: wrap
-  text-align: center
-  height: calc(100vh - 200px)
+  align-items: center
+  justify-content: space-around
   .logo
     padding-top: 3rem
     width: 35%
