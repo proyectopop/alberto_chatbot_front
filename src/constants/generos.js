@@ -1,5 +1,5 @@
 export default [
-  { key: 'I', value: 'indistinto' },
   { key: 'M', value: 'masculino' },
+  { key: 'I', value: 'indistinto' },
   { key: 'F', value: 'femenino' },
 ];

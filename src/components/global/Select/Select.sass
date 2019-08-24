@@ -1,3 +1,5 @@
+@import "../../../assets/sass/global.sass"
+
 select
   width: 25%
   -webkit-appearance: none;
@@ -8,6 +10,7 @@ select
   background-color: transparent
   border: 0
   color: whitesmoke
+  color: $color-secondary
   cursor: pointer
   font-family: inherit
   font-size: 1.4rem
@@ -26,10 +29,11 @@ select:focus
 .selectfield
   position: relative
   box-sizing: border-box
+
   &::after
       position: absolute
-      top: 1em
-      right: 5rem
+      top: 1.2em
+      right: 4.5rem
       @media screen and (max-width: 340px)
         right: -2px
       @media screen and (min-width: 341px) and (max-width: 600px)
@@ -43,9 +47,9 @@ select:focus
         right: 48px
       width: 0
       height: 0
-      padding: 0
-      content: ''
       border-left: .33em solid transparent
       border-right: .33em solid transparent
       border-top: .400em solid whitesmoke
+      content: ''
+      padding: 0
       pointer-events: none
