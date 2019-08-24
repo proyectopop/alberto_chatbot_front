@@ -45,9 +45,9 @@ class Landing extends Component {
 
    contenidoDelPopoverDeGenero = () => (
      <p>
-    El bot tiene en cuenta el género a la hora de responderte.<br />
-    Por ej., si lo hacés enojar, las respuestas serán más suaves
-    si elegís <i>femenino</i> o <i>indistinto</i>.
+    El género que selecciones influirá en la respuesta de Alberto.<br />
+    En el caso de enojarse podría ser más indulgente si
+    elegís <i>femenino</i> o <i>indistinto</i>.
      </p>
    )
 
