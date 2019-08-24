@@ -14,12 +14,17 @@ class Chat extends PureComponent {
 
   state = {
     mensajeUsuario: '',
+    mostrarModalDeAyuda: false,
   }
 
   componentDidMount() {
     const { establecerSessionId } = this.props;
 
     establecerSessionId(uuid());
+  }
+
+  alternarMostrarModalDeAyuda = () => {
+    this.setState({ mostrarModalDeAyuda: !this.state.mostrarModalDeAyuda });
   }
 
   manejarEscritura = (nuevoValor) => {
@@ -43,11 +48,11 @@ class Chat extends PureComponent {
 
 
   render() {
-    const { mensajeUsuario } = this.state;
+    const { mensajeUsuario, mostrarModalDeAyuda } = this.state;
     const {
       anchoDisponible, charlaTerminada, estadoDeAlberto, historial,
     } = this.props;
-    const { manejarEscritura, manejarUsuarieEnvioMensaje } = this;
+    const { alternarMostrarModalDeAyuda, manejarEscritura, manejarUsuarieEnvioMensaje } = this;
 
     return (
       <section className="Chat fade">
@@ -61,11 +66,13 @@ class Chat extends PureComponent {
 
         <div className="Chat__Derecha">
           <ChatBox
+            alternarMostrarModalDeAyuda={alternarMostrarModalDeAyuda}
             charlaTerminada={charlaTerminada}
             estadoDeAlberto={estadoDeAlberto}
             historial={historial}
             mensaje={mensajeUsuario}
             manejarEscritura={manejarEscritura}
+            mostrarModalDeAyuda={mostrarModalDeAyuda}
             procesarMensajeUsuario={manejarUsuarieEnvioMensaje}
           />
           { charlaTerminada && 'ALBERTO SE CALENTÓ Y SE FUE. CHARLA TERMINADA.'}

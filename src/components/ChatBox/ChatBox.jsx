@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Modalizer from 'react-modal';
 
 import History from '../History/History';
 import Input from '../TextInput/TextInput';
+import About from '../About/About';
 import estado from '../../constants/estados';
 
 import avatar from '../../assets/img/avatar.jpg';
@@ -40,8 +42,8 @@ const ajustarTextoSegunEstado = (estadoDeAlberto) => {
 const ChatBox = (props) => {
 
   const {
-    charlaTerminada, estadoDeAlberto, historial,
-    mensaje, manejarEscritura, procesarMensajeUsuario,
+    alternarMostrarModalDeAyuda, charlaTerminada, estadoDeAlberto, historial,
+    mensaje, manejarEscritura, mostrarModalDeAyuda, procesarMensajeUsuario,
   } = props;
 
   return (
@@ -60,8 +62,17 @@ const ChatBox = (props) => {
           className="ChatBox__Encabezado__SignoDePregunta"
           height="20px"
           src={pregunta}
+          onClick={alternarMostrarModalDeAyuda}
           width="20px"
         />
+
+        <Modalizer
+          isOpen={mostrarModalDeAyuda}
+          overlayClassName="ChatBox__Modal__Overlay"
+        >
+          <About alternarModalDeAyuda={alternarMostrarModalDeAyuda} esModal />
+        </Modalizer>
+
       </div>
 
       <div className="ChatBox__Cuerpo">
@@ -88,10 +99,12 @@ const ChatBox = (props) => {
 export default ChatBox;
 
 ChatBox.propTypes = {
+  alternarMostrarModalDeAyuda: PropTypes.func.isRequired,
   charlaTerminada: PropTypes.bool.isRequired,
   estadoDeAlberto: PropTypes.string.isRequired,
   historial: PropTypes.arrayOf(PropTypes.object).isRequired,
   mensaje: PropTypes.string.isRequired,
   manejarEscritura: PropTypes.func.isRequired,
+  mostrarModalDeAyuda: PropTypes.bool.isRequired,
   procesarMensajeUsuario: PropTypes.func.isRequired,
 };

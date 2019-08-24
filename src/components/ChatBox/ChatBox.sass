@@ -9,6 +9,19 @@
     width: 320px
     height: 490px
     margin: auto  
+  &__Modal
+    &__Overlay
+      background-color: transparent
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100vw
+      @media screen and (min-width: 500px)
+        width: 500px
+        height: 400px
+        +AlwaysAbsoluteCenter
   &__Encabezado
     width: 100vw
     +respond(tablet)
