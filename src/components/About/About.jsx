@@ -26,8 +26,8 @@ const About = (props) => {
         <Logo className="About__Content__Logo" tipo="logo" />
 
         <div className="About__Content__Item">
-          <h2 className="About__Content__Item__Title">¿Qué es esto?</h2>
-          <p>
+          <h2 className="About__Content__Item__Question">¿Qué es esto?</h2>
+          <p className="About__Content__Item__Response">
           Es un programa que intenta simular a Alberto Fernández.
           Pero no sólo al Alberto en su faceta como
           candidato en campaña electoral, sino a la persona.
@@ -38,8 +38,8 @@ const About = (props) => {
 
 
         <div className="About__Content__Item">
-          <h2 className="About__Content__Item__Title">¿Quién lo hizo?</h2>
-          <p>
+          <h2 className="About__Content__Item__Question">¿Quién lo hizo?</h2>
+          <p className="About__Content__Item__Response">
           Un pequeño grupo de compañeres en apoyo a la fórmula
           Fernández-Fernández.
           El proyecto inició con la idea de recoger las simpáticas
