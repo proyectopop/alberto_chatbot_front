@@ -69,6 +69,7 @@ const ChatBox = (props) => {
         <Modalizer
           isOpen={mostrarModalDeAyuda}
           overlayClassName="ChatBox__Modal__Overlay"
+          portalClassName="ChatBox__Modal"
         >
           <About alternarModalDeAyuda={alternarMostrarModalDeAyuda} esModal />
         </Modalizer>

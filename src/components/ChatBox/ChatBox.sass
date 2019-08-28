@@ -10,6 +10,9 @@
     height: 490px
     margin: auto  
   &__Modal
+    +AlwaysAbsoluteCenter
+    width: 100vw
+    height: 300px
     &__Overlay
       background-color: transparent
       position: fixed;
@@ -17,7 +20,6 @@
       left: 0;
       right: 0;
       bottom: 0;
-      width: 100vw
       @media screen and (min-width: 500px)
         width: 500px
         height: 400px
