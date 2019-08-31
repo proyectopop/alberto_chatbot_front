@@ -1,1 +1,6 @@
-export default { conectado: 'CONECTADO', desconectado: 'DESCONECTADO', escribiendo: 'ESCRIBIENDO' };
+export default {
+  conectado: 'CONECTADO',
+  desconectado: 'DESCONECTADO',
+  escribiendo: 'ESCRIBIENDO',
+  paseandoADylan: 'PASEANDO A DYLAN',
+};

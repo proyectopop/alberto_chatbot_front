@@ -27,6 +27,12 @@ export default function (state = initialState, action) {
         estado: estado.escribiendo,
       };
 
+    case actions.ESTADO_ESTABLECER_ALBERTO_PASEANDO_A_DYLAN:
+      return {
+        ...state,
+        estado: estado.paseandoADylan,
+      };
+
 
     default:
       return state;

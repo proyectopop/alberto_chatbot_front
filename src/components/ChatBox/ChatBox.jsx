@@ -18,7 +18,7 @@ const ajustarColorSegunEstado = (estadoDeAlberto) => {
     return 'text-success';
 
   }
-  if (estadoDeAlberto === estado.desconectado) {
+  if (estadoDeAlberto === estado.desconectado || estadoDeAlberto === estado.paseandoADylan) {
     return 'text-error';
   }
 
@@ -33,6 +33,10 @@ const ajustarTextoSegunEstado = (estadoDeAlberto) => {
 
   if (estadoDeAlberto === estado.desconectado) {
     return ' desconectado';
+  }
+
+  if (estadoDeAlberto === estado.paseandoADylan) {
+    return ' paseando a Dylan, no pudimos encontrarlo';
   }
 
   return ' escribiendo...';

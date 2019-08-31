@@ -1,7 +1,14 @@
 import { API_BASE_URL, API_HEADERS } from '../config';
 
 export async function probarSiHayConexion() {
-  const respuesta = await fetch(`${API_BASE_URL}/alberto/prueba`, { ...API_HEADERS }).then(res => res);
+
+  let respuesta;
+
+  try {
+    respuesta = await fetch(`${API_BASE_URL}/alberto/prueba`, { ...API_HEADERS });
+  } catch {
+    respuesta = false;
+  }
 
   return respuesta;
 }

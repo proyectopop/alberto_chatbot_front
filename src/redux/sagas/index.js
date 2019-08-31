@@ -8,8 +8,6 @@ import contextoDeGenero from './helpers/getGenderContext';
 import * as actions from '../actions/types';
 import * as api from '../../api/api';
 
-// TODO --> ERROR HANDLING EN SAGAS
-
 function* inicializarChat() {
 
   const estaConectado = yield api.probarSiHayConexion();
@@ -29,6 +27,10 @@ function* inicializarChat() {
 
       yield api.establecerContexto(sessionId, { event: contextoDeGenero(generoSeleccionado) });
     }
+  } else {
+    yield put({
+      type: actions.ESTADO_ESTABLECER_ALBERTO_PASEANDO_A_DYLAN,
+    });
   }
 }
 
