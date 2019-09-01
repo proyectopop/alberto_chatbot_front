@@ -14,6 +14,6 @@ export const charlaEstablecerContextoGeneroMasculino = () => ({
   type: types.CHARLA_ESTABLECER_CONTEXTO_GENERO_MASCULINO,
 });
 
-export const charlEstablecerContextoGeneroFemenino = () => ({
+export const charlaEstablecerContextoGeneroFemenino = () => ({
   type: types.CHARLA_ESTABLECER_CONTEXTO_GENERO_FEMENINO,
 });
