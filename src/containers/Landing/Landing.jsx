@@ -6,7 +6,7 @@ import {
   generalAlternarConsentimiento, generalCharlaComenzada,
   generalCharlaTerminada, generalSeleccionarGenero,
 } from '../../redux/actions/general';
-import { charlEstablecerContextoGeneroFemenino, charlaEstablecerContextoGeneroMasculino } from '../../redux/actions/charla';
+import { charlaEstablecerContextoGeneroFemenino, charlaEstablecerContextoGeneroMasculino } from '../../redux/actions/charla';
 
 import LandingLarge from '../../components/LandingLargeScreens/LandingLargeScreens';
 import LandingSmall from '../../components/LandingSmallScreens/LandingSmallScreens';
@@ -57,7 +57,7 @@ class Landing extends Component {
        genero, establecerContextoGeneroMasculino,
        establecerContextoGeneroFemenino,
      } = this.props;
-
+     console.log(genero);
      if (genero === 'M') return establecerContextoGeneroMasculino();
      if (genero === 'F') return establecerContextoGeneroFemenino();
 
@@ -122,7 +122,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   alternarConsentimiento: () => dispatch(generalAlternarConsentimiento()),
-  establecerContextoGeneroFemenino: () => dispatch(charlEstablecerContextoGeneroFemenino()),
+  establecerContextoGeneroFemenino: () => dispatch(charlaEstablecerContextoGeneroFemenino()),
   establecerContextoGeneroMasculino: () => dispatch(charlaEstablecerContextoGeneroMasculino()),
   seleccionarGenero: generoSeleccionado => dispatch(generalSeleccionarGenero(generoSeleccionado)),
   marcarCharlaComenzada: () => dispatch(generalCharlaComenzada()),
