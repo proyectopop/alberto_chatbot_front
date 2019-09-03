@@ -7,6 +7,7 @@ import { generalEstablecerSessionId } from '../../redux/actions/general';
 import Logo from '../../components/Logo/Logo';
 import ChatBox from '../../components/ChatBox/ChatBox';
 import Share from '../../components/Share/Share';
+import SecondaryButton from '../../components/global/Buttons/SecondaryButton';
 
 import './Chat.sass';
 
@@ -75,6 +76,7 @@ class Chat extends PureComponent {
             mostrarModalDeAyuda={mostrarModalDeAyuda}
             procesarMensajeUsuario={manejarUsuarieEnvioMensaje}
           />
+          { charlaTerminada && <SecondaryButton text="Continuar" style={{ marginBottom: '16px' }} />}
         </div>
 
 
