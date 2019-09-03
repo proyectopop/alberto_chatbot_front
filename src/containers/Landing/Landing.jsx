@@ -57,7 +57,7 @@ class Landing extends Component {
        genero, establecerContextoGeneroMasculino,
        establecerContextoGeneroFemenino,
      } = this.props;
-     console.log(genero);
+
      if (genero === 'M') return establecerContextoGeneroMasculino();
      if (genero === 'F') return establecerContextoGeneroFemenino();
 

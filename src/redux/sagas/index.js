@@ -28,9 +28,19 @@ function* inicializarChat() {
       yield api.establecerContexto(sessionId, { event: contextoDeGenero(generoSeleccionado) });
     }
   } else {
-    yield put({
-      type: actions.ESTADO_ESTABLECER_ALBERTO_PASEANDO_A_DYLAN,
-    });
+
+    // Hubo un error, terminar la charla
+    yield all(
+      [
+        yield put({
+          type: actions.ESTADO_ESTABLECER_ALBERTO_PASEANDO_A_DYLAN,
+        }),
+        yield put({
+          type: actions.GENERAL_MARCAR_CHARLA_TERMINADA,
+        }),
+      ],
+    );
+
   }
 }
 
@@ -39,7 +49,7 @@ function* procesarMensajeDeUsuarie(action) {
 
   if (!action.payload.mensaje) return;
 
-  // Establecer estado "escribiendo""
+  // Establecer estado "escribiendo"
 
   yield put({
     type: actions.ESTADO_ESTABLECER_ALBERTO_ESCRIBIENDO,
