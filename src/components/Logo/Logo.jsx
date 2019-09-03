@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Logotipo from '../../assets/img/logotipo.png';
+import Logotipo from '../../assets/img/logotipo-final.png';
 import LogoFinal from '../../assets/img/logo-final.png';
 
 const devolverLogoRequerido = logoRequerido => (logoRequerido === 'logo' ? LogoFinal : Logotipo);
