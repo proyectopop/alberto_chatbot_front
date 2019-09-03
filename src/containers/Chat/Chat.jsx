@@ -75,7 +75,7 @@ class Chat extends PureComponent {
             mostrarModalDeAyuda={mostrarModalDeAyuda}
             procesarMensajeUsuario={manejarUsuarieEnvioMensaje}
           />
-          { charlaTerminada && 'ALBERTO SE CALENTÓ Y SE FUE. CHARLA TERMINADA.'}
+          { charlaTerminada && 'ALBERTO SE CALENTÓ Y SE FUE. CHARLA TERMINADA.' }
         </div>
 
 
