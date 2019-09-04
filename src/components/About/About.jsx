@@ -5,13 +5,21 @@ import Logo from '../Logo/Logo';
 
 import './About.sass';
 
+const AboutStyles = {
+  background: 'whitesmoke',
+  borderRadius: '20px',
+  maxHeight: '400px',
+  overflow: 'scroll',
+  padding: '2rem',
+  width: '75%',
+};
 
 const About = (props) => {
 
   const { alternarModalDeAyuda, esModal } = props;
 
   return (
-    <section className="About">
+    <section className="About" style={!esModal && AboutStyles}>
 
       { esModal && (
       <button
@@ -23,7 +31,7 @@ const About = (props) => {
       )}
 
       <div className="About__Content">
-        <Logo className="About__Content__Logo" tipo="logo" />
+        {esModal && <Logo className="About__Content__Logo" tipo="logo" />}
 
         <div className="About__Content__Item">
           <h2 className="About__Content__Item__Question">¿Qué es esto?</h2>
@@ -31,8 +39,8 @@ const About = (props) => {
           Es un programa que intenta simular a Alberto Fernández.
           Pero no sólo al Alberto en su faceta como
           candidato en campaña electoral, sino a la persona.
-          La mayoría de las respuestas son tomadas de entrevistas o
-          tweets.
+          La gran mayoría de las respuestas son tomadas de entrevistas o
+          tweets, adaptándolas al contexto de un chat en la forma más fiel posible.
           </p>
         </div>
 
@@ -46,6 +54,16 @@ const About = (props) => {
           respuestas de Alberto en Twitter y luego fue mutando en
           algo más serio y complejo: que responda también a cualquier tema
           relevante para un Alberto candidato a presidente.
+          </p>
+        </div>
+
+        <div className="About__Content__Item">
+          <h2 className="About__Content__Item__Question">¿Cómo me contacto con ustedes?</h2>
+          <p className="About__Content__Item__Response">
+          ¿El chat-bot no respondió lo que querías? ¿Tenés alguna sugerencia
+          sobre un tema en particular que creés que nuestro Alberto debería responder?
+            <br />
+            <b>Podés escribirnos en Twitter o enviarnos un e-mail.</b>
           </p>
         </div>
 

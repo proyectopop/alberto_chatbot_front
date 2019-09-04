@@ -4,6 +4,7 @@ import uuid from 'uuidv4';
 import { connect } from 'react-redux';
 import { charlaUsuarieEnvioNuevoMensaje } from '../../redux/actions/charla';
 import { generalEstablecerSessionId } from '../../redux/actions/general';
+import About from '../../components/About/About';
 import Logo from '../../components/Logo/Logo';
 import ChatBox from '../../components/ChatBox/ChatBox';
 import Share from '../../components/Share/Share';
@@ -16,6 +17,7 @@ class Chat extends PureComponent {
   state = {
     mensajeUsuario: '',
     mostrarModalDeAyuda: false,
+    mostrarSobreNostros: false,
   }
 
   componentDidMount() {
@@ -25,7 +27,9 @@ class Chat extends PureComponent {
   }
 
   alternarMostrarModalDeAyuda = () => {
-    this.setState({ mostrarModalDeAyuda: !this.state.mostrarModalDeAyuda });
+    const { mostrarModalDeAyuda } = this.state;
+
+    this.setState({ mostrarModalDeAyuda: !mostrarModalDeAyuda });
   }
 
   manejarEscritura = (nuevoValor) => {
@@ -47,13 +51,23 @@ class Chat extends PureComponent {
     return anchoDisponible < 768 && campoDeTextoEnfocado;
   }
 
+  alternarMostrarSobreNosotros = () => {
+    const { mostrarSobreNostros } = this.state;
+
+    this.setState({
+      mostrarSobreNostros: !mostrarSobreNostros,
+    });
+  }
+
 
   render() {
-    const { mensajeUsuario, mostrarModalDeAyuda } = this.state;
+    const { mensajeUsuario, mostrarModalDeAyuda, mostrarSobreNostros } = this.state;
     const {
       anchoDisponible, charlaTerminada, estadoDeAlberto, historial,
     } = this.props;
-    const { alternarMostrarModalDeAyuda, manejarEscritura, manejarUsuarieEnvioMensaje } = this;
+    const {
+      alternarMostrarSobreNosotros, alternarMostrarModalDeAyuda, manejarEscritura, manejarUsuarieEnvioMensaje,
+    } = this;
 
     return (
       <section className="Chat fade">
@@ -66,17 +80,27 @@ class Chat extends PureComponent {
         )}
 
         <div className="Chat__Derecha">
-          <ChatBox
-            alternarMostrarModalDeAyuda={alternarMostrarModalDeAyuda}
-            charlaTerminada={charlaTerminada}
-            estadoDeAlberto={estadoDeAlberto}
-            historial={historial}
-            mensaje={mensajeUsuario}
-            manejarEscritura={manejarEscritura}
-            mostrarModalDeAyuda={mostrarModalDeAyuda}
-            procesarMensajeUsuario={manejarUsuarieEnvioMensaje}
+          {
+            mostrarSobreNostros ? <About /> : (
+              <ChatBox
+                alternarMostrarModalDeAyuda={alternarMostrarModalDeAyuda}
+                charlaTerminada={charlaTerminada}
+                estadoDeAlberto={estadoDeAlberto}
+                historial={historial}
+                mensaje={mensajeUsuario}
+                manejarEscritura={manejarEscritura}
+                mostrarModalDeAyuda={mostrarModalDeAyuda}
+                procesarMensajeUsuario={manejarUsuarieEnvioMensaje}
+              />
+            )
+          }
+          { charlaTerminada && (
+          <SecondaryButton
+            text={mostrarSobreNostros ? 'Reiniciar' : 'Continuar'}
+            style={{ marginBottom: '16px' }}
+            clickHandler={alternarMostrarSobreNosotros}
           />
-          { charlaTerminada && <SecondaryButton text="Continuar" style={{ marginBottom: '16px' }} />}
+          )}
         </div>
 
 
