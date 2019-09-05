@@ -19,7 +19,7 @@ const About = (props) => {
   const { alternarModalDeAyuda, esModal } = props;
 
   return (
-    <section className="About" style={!esModal && AboutStyles}>
+    <section className="About" style={!esModal ? AboutStyles : {}}>
 
       { esModal && (
       <button
@@ -73,11 +73,12 @@ const About = (props) => {
 };
 
 About.propTypes = {
-  alternarModalDeAyuda: PropTypes.func.isRequired,
+  alternarModalDeAyuda: PropTypes.func,
   esModal: PropTypes.bool,
 };
 
 About.defaultProps = {
+  alternarModalDeAyuda: () => {},
   esModal: false,
 };
 

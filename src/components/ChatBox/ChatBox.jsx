@@ -98,7 +98,9 @@ const ChatBox = (props) => {
 
     </div>
   );
+
 };
+Modalizer.setAppElement('#root');
 
 export default ChatBox;
 
