@@ -30,7 +30,7 @@ class Chat extends PureComponent {
     const { establecerSessionId, enviarMensajeDeInactividadInicial } = this.props;
 
     establecerSessionId(uuid());
-    setTimeout(() => enviarMensajeDeInactividadInicial(uuid(), this.mensajeDeInactividadInicial()), 20000);
+    this.timeoutDeActividadInicial = setTimeout(() => enviarMensajeDeInactividadInicial(uuid(), this.mensajeDeInactividadInicial()), 20000);
   }
 
   mensajeDeInactividadInicial = () => {
@@ -60,8 +60,8 @@ class Chat extends PureComponent {
     usuarieEnvioMensaje(sesion, mensajeUsuario);
 
     this.setState({ mensajeUsuario: '' });
-    setTimeout(() => enviarMensajeDeInactividad(uuid(), this.mensajeDeInactividad()), 10000);
-
+    clearTimeout(this.timeoutDeActividadInicial);
+    setTimeout(() => enviarMensajeDeInactividad(uuid(), this.mensajeDeInactividad()), 20000);
   }
 
   ocultarEnMobileDuranteEscritura = () => {
