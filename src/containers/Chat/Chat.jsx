@@ -1,8 +1,14 @@
+/* eslint-disable react/no-unused-state */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'uuidv4';
 import { connect } from 'react-redux';
-import { charlaUsuarieEnvioNuevoMensaje } from '../../redux/actions/charla';
+import { mensajesDeInactividad, mensajesDeInactividadInicial } from '../../constants/mensajesDeInactividad';
+import {
+  charlaUsuarieEnvioNuevoMensaje,
+  charlaAgregarMensajeDeInactividad,
+  charlaAgregarMensajeDeInactividadInicial,
+} from '../../redux/actions/charla';
 import { generalEstablecerSessionId } from '../../redux/actions/general';
 import About from '../../components/About/About';
 import Logo from '../../components/Logo/Logo';
@@ -21,9 +27,20 @@ class Chat extends PureComponent {
   }
 
   componentDidMount() {
-    const { establecerSessionId } = this.props;
+    const { establecerSessionId, enviarMensajeDeInactividadInicial } = this.props;
 
     establecerSessionId(uuid());
+    setTimeout(() => enviarMensajeDeInactividadInicial(uuid(), this.mensajeDeInactividadInicial()), 20000);
+  }
+
+  mensajeDeInactividadInicial = () => {
+    const mensajeAleatorio = Math.floor(Math.random() * mensajesDeInactividadInicial.length);
+    return mensajesDeInactividadInicial[mensajeAleatorio];
+  }
+
+  mensajeDeInactividad = () => {
+    const mensajeAleatorio = Math.floor(Math.random() * mensajesDeInactividad.length);
+    return mensajesDeInactividad[mensajeAleatorio];
   }
 
   alternarMostrarModalDeAyuda = () => {
@@ -37,12 +54,14 @@ class Chat extends PureComponent {
   }
 
   manejarUsuarieEnvioMensaje = () => {
-    const { sesion, usuarieEnvioMensaje } = this.props;
+    const { sesion, usuarieEnvioMensaje, enviarMensajeDeInactividad } = this.props;
     const { mensajeUsuario } = this.state;
 
     usuarieEnvioMensaje(sesion, mensajeUsuario);
 
     this.setState({ mensajeUsuario: '' });
+    setTimeout(() => enviarMensajeDeInactividad(uuid(), this.mensajeDeInactividad()), 10000);
+
   }
 
   ocultarEnMobileDuranteEscritura = () => {
@@ -121,11 +140,15 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   usuarieEnvioMensaje: (sesion, msj) => dispatch(charlaUsuarieEnvioNuevoMensaje(sesion, msj)),
   establecerSessionId: id => dispatch(generalEstablecerSessionId(id)),
+  enviarMensajeDeInactividad: (msjId, msj) => dispatch(charlaAgregarMensajeDeInactividad(msjId, msj)),
+  enviarMensajeDeInactividadInicial: (msjId, msj) => dispatch(charlaAgregarMensajeDeInactividadInicial(msjId, msj)),
 });
 
 Chat.propTypes = {
   anchoDisponible: PropTypes.number.isRequired,
   campoDeTextoEnfocado: PropTypes.bool.isRequired,
+  enviarMensajeDeInactividad: PropTypes.func.isRequired,
+  enviarMensajeDeInactividadInicial: PropTypes.func.isRequired,
   establecerSessionId: PropTypes.func.isRequired,
   estadoDeAlberto: PropTypes.string.isRequired,
   charlaTerminada: PropTypes.bool,

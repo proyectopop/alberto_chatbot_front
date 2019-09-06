@@ -17,3 +17,13 @@ export const charlaEstablecerContextoGeneroMasculino = () => ({
 export const charlaEstablecerContextoGeneroFemenino = () => ({
   type: types.CHARLA_ESTABLECER_CONTEXTO_GENERO_FEMENINO,
 });
+
+export const charlaAgregarMensajeDeInactividadInicial = (msjId, mensajeDeAlberto) => ({
+  type: types.CHARLA_AGREGAR_NUEVO_MENSAJE_DE_INACTIVIDAD_INICIAL_AL_HISTORIAL,
+  payload: { id: msjId, mensaje: mensajeDeAlberto },
+});
+
+export const charlaAgregarMensajeDeInactividad = (msjId, mensajeDeAlberto) => ({
+  type: types.CHARLA_AGREGAR_NUEVO_MENSAJE_DE_INACTIVIDAD_AL_HISTORIAL,
+  payload: { id: msjId, mensaje: mensajeDeAlberto },
+});
