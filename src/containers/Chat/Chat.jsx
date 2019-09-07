@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unused-state */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'uuidv4';
@@ -30,7 +29,21 @@ class Chat extends PureComponent {
     const { establecerSessionId, enviarMensajeDeInactividadInicial } = this.props;
 
     establecerSessionId(uuid());
-    this.timeoutDeActividadInicial = setTimeout(() => enviarMensajeDeInactividadInicial(uuid(), this.mensajeDeInactividadInicial()), 20000);
+    this.timeoutDeActividadInicial = setTimeout(() => enviarMensajeDeInactividadInicial(uuid(),
+      this.mensajeDeInactividadInicial()), 20000);
+  }
+
+  componentDidUpdate = (prevProps) => {
+    const { enviarMensajeDeInactividad, historial } = this.props;
+    const historialAnterior = prevProps.historial.length;
+    const historialActual = historial.length;
+
+    if (historialActual !== historialAnterior) {
+      // cancelar inactividad
+      clearTimeout(this.timeoutDeInactividad);
+      this.timeoutDeInactividad = setTimeout(() => enviarMensajeDeInactividad(uuid(),
+        this.mensajeDeInactividad()), 30000);
+    }
   }
 
   mensajeDeInactividadInicial = () => {
@@ -54,14 +67,13 @@ class Chat extends PureComponent {
   }
 
   manejarUsuarieEnvioMensaje = () => {
-    const { sesion, usuarieEnvioMensaje, enviarMensajeDeInactividad } = this.props;
+    const { sesion, usuarieEnvioMensaje } = this.props;
     const { mensajeUsuario } = this.state;
 
     usuarieEnvioMensaje(sesion, mensajeUsuario);
 
     this.setState({ mensajeUsuario: '' });
     clearTimeout(this.timeoutDeActividadInicial);
-    setTimeout(() => enviarMensajeDeInactividad(uuid(), this.mensajeDeInactividad()), 20000);
   }
 
   ocultarEnMobileDuranteEscritura = () => {
@@ -77,7 +89,6 @@ class Chat extends PureComponent {
       mostrarSobreNostros: !mostrarSobreNostros,
     });
   }
-
 
   render() {
     const { mensajeUsuario, mostrarModalDeAyuda, mostrarSobreNostros } = this.state;
