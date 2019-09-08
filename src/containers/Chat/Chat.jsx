@@ -42,7 +42,7 @@ class Chat extends PureComponent {
       // cancelar inactividad
       clearTimeout(this.timeoutDeInactividad);
       this.timeoutDeInactividad = setTimeout(() => enviarMensajeDeInactividad(uuid(),
-        this.mensajeDeInactividad()), 30000);
+        this.mensajeDeInactividad()), 35000);
     }
   }
 
