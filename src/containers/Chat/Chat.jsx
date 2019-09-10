@@ -34,7 +34,7 @@ class Chat extends PureComponent {
   }
 
   componentDidUpdate = (prevProps) => {
-    const { enviarMensajeDeInactividad, historial } = this.props;
+    const { charlaTerminada, enviarMensajeDeInactividad, historial } = this.props;
     const historialAnterior = prevProps.historial.length;
     const historialActual = historial.length;
 
@@ -43,6 +43,11 @@ class Chat extends PureComponent {
       clearTimeout(this.timeoutDeInactividad);
       this.timeoutDeInactividad = setTimeout(() => enviarMensajeDeInactividad(uuid(),
         this.mensajeDeInactividad()), 35000);
+    }
+
+    if (charlaTerminada) {
+      clearTimeout(this.timeoutDeActividadInicial);
+      clearTimeout(this.timeoutDeInactividad);
     }
   }
 
@@ -90,13 +95,20 @@ class Chat extends PureComponent {
     });
   }
 
+  manejarClick = () => {
+    const { alternarMostrarSobreNosotros } = this;
+    const { mostrarSobreNostros } = this.state;
+
+    return mostrarSobreNostros ? window.location.reload() : alternarMostrarSobreNosotros();
+  }
+
   render() {
     const { mensajeUsuario, mostrarModalDeAyuda, mostrarSobreNostros } = this.state;
     const {
       anchoDisponible, charlaTerminada, estadoDeAlberto, historial,
     } = this.props;
     const {
-      alternarMostrarSobreNosotros, alternarMostrarModalDeAyuda, manejarEscritura, manejarUsuarieEnvioMensaje,
+      alternarMostrarModalDeAyuda, manejarClick, manejarEscritura, manejarUsuarieEnvioMensaje,
     } = this;
 
     return (
@@ -128,7 +140,7 @@ class Chat extends PureComponent {
           <SecondaryButton
             text={mostrarSobreNostros ? 'Reiniciar' : 'Continuar'}
             style={{ marginBottom: '16px' }}
-            clickHandler={alternarMostrarSobreNosotros}
+            clickHandler={manejarClick}
           />
           )}
         </div>
