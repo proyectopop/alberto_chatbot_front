@@ -14,6 +14,7 @@ import Logo from '../../components/Logo/Logo';
 import ChatBox from '../../components/ChatBox/ChatBox';
 import Share from '../../components/Share/Share';
 import SecondaryButton from '../../components/global/Buttons/SecondaryButton';
+import termometro from '../../assets/img/termometro.svg';
 
 import './Chat.sass';
 
@@ -137,11 +138,19 @@ class Chat extends PureComponent {
             )
           }
           { charlaTerminada && (
-          <SecondaryButton
-            text={mostrarSobreNostros ? 'Reiniciar' : 'Continuar'}
-            style={{ marginBottom: '16px' }}
-            clickHandler={manejarClick}
-          />
+            <div className="Chat__CharlaTerminada">
+              <div className="Chat__CharlaTerminada__AlbertoCalienteFeedback">
+                <img className="Chat__CharlaTerminada__AlbertoCalienteFeedback__Icon" src={termometro} alt="Alberto se calentó" />
+                <span className="Chat__CharlaTerminada__AlbertoCalienteFeedback__Text">
+                  Alberto se calentó y se fue
+                </span>
+              </div>
+              <SecondaryButton
+                text={mostrarSobreNostros ? 'Reiniciar' : 'Continuar'}
+                style={{ marginBottom: '10px' }}
+                clickHandler={manejarClick}
+              />
+            </div>
           )}
         </div>
 
