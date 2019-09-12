@@ -86,11 +86,6 @@ export default class LandingLargeScreens extends Component {
 
               <Logo tipo="logo" />
 
-              <MainButton
-                clickHandler={botonPrincipalSeleccionado}
-                text="Charlar con Alberto"
-              />
-
               <div className="LandingOptions">
 
                 <div className="selectfield">
@@ -126,6 +121,11 @@ export default class LandingLargeScreens extends Component {
 
 
               </div>
+
+              <MainButton
+                clickHandler={botonPrincipalSeleccionado}
+                text="Charlar con Alberto"
+              />
 
 
             </div>

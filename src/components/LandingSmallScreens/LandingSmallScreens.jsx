@@ -41,11 +41,6 @@ export default class LandingSmallScreens extends PureComponent {
 
           <Logo tipo="logo" className="logo" />
 
-          <MainButton
-            clickHandler={botonPrincipalSeleccionado}
-            text="Charlar con Alberto"
-          />
-
           <div className="selectfield">
             <Popover
               placement="top"
@@ -72,6 +67,11 @@ export default class LandingSmallScreens extends PureComponent {
             opcionA="SI"
             opcionB="NO"
             texto="Enviar mis interacciones para mejorar el chatbot"
+          />
+
+          <MainButton
+            clickHandler={botonPrincipalSeleccionado}
+            text="Charlar con Alberto"
           />
 
         </div>
