@@ -1,11 +1,12 @@
 import * as actions from '../actions/types';
+import generos from '../../constants/generos';
 
 const initialState = {
   charlaComenzada: false,
   charlaTerminada: false,
   servidorNoDisponible: false,
   consentimientoDeColaboracion: true,
-  genero: 'I',
+  genero: generos[0].key,
   sesion: '1',
 };
 

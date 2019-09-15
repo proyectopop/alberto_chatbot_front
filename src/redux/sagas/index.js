@@ -22,8 +22,10 @@ function* inicializarChat() {
     const generoSeleccionado = yield select(state => state.general.genero);
 
     // Si el usuarie quiere ser tratado como hombre o mujer, establecer contexto en DialogFlow
-    if (generoSeleccionado !== generos[0].key) {
+    if (generoSeleccionado !== generos[2].key) {
+
       const sessionId = yield select(state => state.general.sesion);
+      alert(generoSeleccionado);
 
       yield api.establecerContexto(sessionId, { event: contextoDeGenero(generoSeleccionado) });
     }
