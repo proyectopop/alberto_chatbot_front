@@ -2,7 +2,7 @@ import * as actions from '../actions/types';
 import estado from '../../constants/estados';
 
 const initialState = {
-  estado: estado.desconectado,
+  estado: estado.conectando,
 };
 
 export default function (state = initialState, action) {

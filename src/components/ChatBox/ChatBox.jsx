@@ -31,6 +31,10 @@ const ajustarTextoSegunEstado = (estadoDeAlberto) => {
     return ' conectado';
   }
 
+  if (estadoDeAlberto === estado.conectando) {
+    return ' conectándose...';
+  }
+
   if (estadoDeAlberto === estado.desconectado || estadoDeAlberto === estado.caliente) {
     return ' desconectado';
   }

@@ -1,4 +1,5 @@
 export default {
+  conectando: 'CONECTANDO',
   conectado: 'CONECTADO',
   desconectado: 'DESCONECTADO',
   escribiendo: 'ESCRIBIENDO',
