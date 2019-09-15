@@ -105,27 +105,32 @@ class Chat extends PureComponent {
     return mostrarSobreNostros ? window.location.reload() : alternarMostrarSobreNosotros();
   }
 
-  render() {
-    const { mensajeUsuario, mostrarModalDeAyuda, mostrarSobreNostros } = this.state;
-    const {
-      anchoDisponible, charlaTerminada, estadoDeAlberto, historial, servidorNoDisponible,
-    } = this.props;
-    const {
-      alternarMostrarModalDeAyuda, manejarClick, manejarEscritura, manejarUsuarieEnvioMensaje,
-    } = this;
+   charlaEstaTerminada = () => {
+     const { charlaTerminada, servidorNoDisponible, estadoDeAlberto } = this.props;
+     return charlaTerminada && !(servidorNoDisponible) && (estadoDeAlberto === estado.caliente);
+   }
 
-    return (
-      <section className="Chat fade">
+   render() {
+     const { mensajeUsuario, mostrarModalDeAyuda, mostrarSobreNostros } = this.state;
+     const {
+       anchoDisponible, charlaTerminada, estadoDeAlberto, historial, servidorNoDisponible,
+     } = this.props;
+     const {
+       alternarMostrarModalDeAyuda, manejarClick, manejarEscritura, manejarUsuarieEnvioMensaje,
+     } = this;
 
-        { anchoDisponible >= 769 && (
-        <div className="Chat__Izquierda">
-          <Logo tipo="logotipo" className="Chat__Izquierda__Logo" />
-          <Share />
-        </div>
-        )}
+     return (
+       <section className="Chat fade">
 
-        <div className="Chat__Derecha">
-          {
+         { anchoDisponible >= 769 && (
+         <div className="Chat__Izquierda">
+           <Logo tipo="logotipo" className="Chat__Izquierda__Logo" />
+           <Share />
+         </div>
+         )}
+
+         <div className="Chat__Derecha">
+           {
             mostrarSobreNostros ? <About /> : !(servidorNoDisponible) ? (
               <ChatBox
                 alternarMostrarModalDeAyuda={alternarMostrarModalDeAyuda}
@@ -140,38 +145,37 @@ class Chat extends PureComponent {
             ) : (
               <div className="Chat__Derecha__ServerDown">
                 <img src={serverDown} alt="No se pudo conectar al servidor" />
-                <span className="Chat__Derecha__ServerDown__ErrorFeedback">NO SE PUDO CONECTAR CON ALBERTO, INTENTÁ MÁS TARDE POR FAVOR</span>
+                <span className="Chat__Derecha__ServerDown__ErrorFeedback">
+                  NO SE PUDO CONECTAR CON ALBERTO, INTENTÁ MÁS TARDE POR FAVOR
+                </span>
               </div>
             )
           }
 
-          { charlaTerminada && !(servidorNoDisponible) && (estadoDeAlberto === estado.caliente)
-            && (
-            <div className="Chat__CharlaTerminada">
-                {
-                  !mostrarSobreNostros && (
-                  <div className="Chat__CharlaTerminada__AlbertoCalienteFeedback">
-                    <img className="Chat__CharlaTerminada__AlbertoCalienteFeedback__Icon" src={termometro} alt="Alberto se calentó" />
-                    <span className="Chat__CharlaTerminada__AlbertoCalienteFeedback__Text">
+           { this.charlaEstaTerminada() && (
+           <div className="Chat__CharlaTerminada">
+             {!mostrarSobreNostros && (
+             <div className="Chat__CharlaTerminada__AlbertoCalienteFeedback">
+               <img className="Chat__CharlaTerminada__AlbertoCalienteFeedback__Icon" src={termometro} alt="Alberto se calentó" />
+               <span className="Chat__CharlaTerminada__AlbertoCalienteFeedback__Text">
                   Alberto se calentó y se fue
-                    </span>
-                  </div>
-                  )
-                }
-              <SecondaryButton
-                text={mostrarSobreNostros ? 'Reiniciar' : 'Continuar'}
-                style={{ marginBottom: '10px' }}
-                clickHandler={manejarClick}
-              />
-            </div>
-            )
+               </span>
+             </div>
+             )}
+             <SecondaryButton
+               text={mostrarSobreNostros ? 'Reiniciar' : 'Continuar'}
+               style={{ marginBottom: '10px' }}
+               clickHandler={manejarClick}
+             />
+           </div>
+           )
           }
-        </div>
+         </div>
 
 
-      </section>
-    );
-  }
+       </section>
+     );
+   }
 }
 
 
