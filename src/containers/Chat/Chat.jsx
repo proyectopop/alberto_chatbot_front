@@ -8,6 +8,7 @@ import {
   charlaAgregarMensajeDeInactividad,
   charlaAgregarMensajeDeInactividadInicial,
 } from '../../redux/actions/charla';
+import estado from '../../constants/estados';
 import { generalEstablecerSessionId } from '../../redux/actions/general';
 import About from '../../components/About/About';
 import Logo from '../../components/Logo/Logo';
@@ -125,7 +126,7 @@ class Chat extends PureComponent {
 
         <div className="Chat__Derecha">
           {
-            mostrarSobreNostros ? <About /> : !servidorNoDisponible ? (
+            mostrarSobreNostros ? <About /> : !(servidorNoDisponible) ? (
               <ChatBox
                 alternarMostrarModalDeAyuda={alternarMostrarModalDeAyuda}
                 charlaTerminada={charlaTerminada}
@@ -144,21 +145,27 @@ class Chat extends PureComponent {
             )
           }
 
-          { charlaTerminada && !servidorNoDisponible(
+          { charlaTerminada && !(servidorNoDisponible) && (estadoDeAlberto === estado.caliente)
+            && (
             <div className="Chat__CharlaTerminada">
-              <div className="Chat__CharlaTerminada__AlbertoCalienteFeedback">
-                <img className="Chat__CharlaTerminada__AlbertoCalienteFeedback__Icon" src={termometro} alt="Alberto se calentó" />
-                <span className="Chat__CharlaTerminada__AlbertoCalienteFeedback__Text">
+                {
+                  !mostrarSobreNostros && (
+                  <div className="Chat__CharlaTerminada__AlbertoCalienteFeedback">
+                    <img className="Chat__CharlaTerminada__AlbertoCalienteFeedback__Icon" src={termometro} alt="Alberto se calentó" />
+                    <span className="Chat__CharlaTerminada__AlbertoCalienteFeedback__Text">
                   Alberto se calentó y se fue
-                </span>
-              </div>
+                    </span>
+                  </div>
+                  )
+                }
               <SecondaryButton
                 text={mostrarSobreNostros ? 'Reiniciar' : 'Continuar'}
                 style={{ marginBottom: '10px' }}
                 clickHandler={manejarClick}
               />
-            </div>,
-          )}
+            </div>
+            )
+          }
         </div>
 
 

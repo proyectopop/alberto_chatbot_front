@@ -27,6 +27,12 @@ export default function (state = initialState, action) {
         estado: estado.escribiendo,
       };
 
+    case actions.ESTADO_ESTABLECER_ALBERTO_SE_CALENTO_Y_SE_FUE:
+      return {
+        ...state,
+        estado: estado.caliente,
+      };
+
     case actions.ESTADO_ESTABLECER_ALBERTO_PASEANDO_A_DYLAN:
       return {
         ...state,

@@ -105,10 +105,10 @@ function* procesarMensajeDeUsuarie(action) {
     yield all(
       [
         put({
-          type: actions.GENERAL_MARCAR_CHARLA_TERMINADA,
+          type: actions.ESTADO_ESTABLECER_ALBERTO_SE_CALENTO_Y_SE_FUE,
         }),
         put({
-          type: actions.ESTADO_ESTABLECER_ALBERTO_DESCONECTADO,
+          type: actions.GENERAL_MARCAR_CHARLA_TERMINADA,
         }),
       ],
     );
