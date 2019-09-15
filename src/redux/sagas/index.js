@@ -25,7 +25,6 @@ function* inicializarChat() {
     if (generoSeleccionado !== generos[2].key) {
 
       const sessionId = yield select(state => state.general.sesion);
-      alert(generoSeleccionado);
 
       yield api.establecerContexto(sessionId, { event: contextoDeGenero(generoSeleccionado) });
     }
