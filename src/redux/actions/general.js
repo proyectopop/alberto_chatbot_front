@@ -4,6 +4,10 @@ export const generalAlternarConsentimiento = () => ({
   type: types.GENERAL_ALTERNAR_CONSENTIMIENTO_DE_COLABORACION,
 });
 
+export const generalServidorNoDisponible = () => ({
+  type: types.GENERAL_SERVIDOR_NO_DISPONIBLE,
+});
+
 export const generalEstablecerSessionId = uuid => ({
   type: types.GENERAL_ESTABLECER_SESSION_ID,
   payload: uuid,

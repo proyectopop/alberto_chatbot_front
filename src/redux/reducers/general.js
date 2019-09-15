@@ -3,6 +3,7 @@ import * as actions from '../actions/types';
 const initialState = {
   charlaComenzada: false,
   charlaTerminada: false,
+  servidorNoDisponible: false,
   consentimientoDeColaboracion: true,
   genero: 'I',
   sesion: '1',
@@ -28,6 +29,12 @@ export default function general(state = initialState, action) {
       return {
         ...state,
         charlaTerminada: true,
+      };
+
+    case actions.GENERAL_SERVIDOR_NO_DISPONIBLE:
+      return {
+        ...state,
+        servidorNoDisponible: true,
       };
 
     case actions.GENERAL_ALTERNAR_CONSENTIMIENTO_DE_COLABORACION:

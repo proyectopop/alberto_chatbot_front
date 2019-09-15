@@ -15,6 +15,7 @@ import ChatBox from '../../components/ChatBox/ChatBox';
 import Share from '../../components/Share/Share';
 import SecondaryButton from '../../components/global/Buttons/SecondaryButton';
 import termometro from '../../assets/img/termometro.svg';
+import serverDown from '../../assets/img/server-down.png';
 
 import './Chat.sass';
 
@@ -106,7 +107,7 @@ class Chat extends PureComponent {
   render() {
     const { mensajeUsuario, mostrarModalDeAyuda, mostrarSobreNostros } = this.state;
     const {
-      anchoDisponible, charlaTerminada, estadoDeAlberto, historial,
+      anchoDisponible, charlaTerminada, estadoDeAlberto, historial, servidorNoDisponible,
     } = this.props;
     const {
       alternarMostrarModalDeAyuda, manejarClick, manejarEscritura, manejarUsuarieEnvioMensaje,
@@ -124,7 +125,7 @@ class Chat extends PureComponent {
 
         <div className="Chat__Derecha">
           {
-            mostrarSobreNostros ? <About /> : (
+            mostrarSobreNostros ? <About /> : !servidorNoDisponible ? (
               <ChatBox
                 alternarMostrarModalDeAyuda={alternarMostrarModalDeAyuda}
                 charlaTerminada={charlaTerminada}
@@ -135,9 +136,15 @@ class Chat extends PureComponent {
                 mostrarModalDeAyuda={mostrarModalDeAyuda}
                 procesarMensajeUsuario={manejarUsuarieEnvioMensaje}
               />
+            ) : (
+              <div className="Chat__Derecha__ServerDown">
+                <img src={serverDown} alt="No se pudo conectar al servidor" />
+                <span className="Chat__Derecha__ServerDown__ErrorFeedback">NO SE PUDO CONECTAR CON ALBERTO, INTENTÁ MÁS TARDE POR FAVOR</span>
+              </div>
             )
           }
-          { charlaTerminada && (
+
+          { charlaTerminada && !servidorNoDisponible(
             <div className="Chat__CharlaTerminada">
               <div className="Chat__CharlaTerminada__AlbertoCalienteFeedback">
                 <img className="Chat__CharlaTerminada__AlbertoCalienteFeedback__Icon" src={termometro} alt="Alberto se calentó" />
@@ -150,7 +157,7 @@ class Chat extends PureComponent {
                 style={{ marginBottom: '10px' }}
                 clickHandler={manejarClick}
               />
-            </div>
+            </div>,
           )}
         </div>
 
@@ -166,6 +173,7 @@ const mapStateToProps = state => ({
   charlaTerminada: state.general.charlaTerminada,
   historial: state.charla.historial,
   estadoDeAlberto: state.estado.estado,
+  servidorNoDisponible: state.general.servidorNoDisponible,
   sesion: state.general.sesion,
 });
 
@@ -186,6 +194,7 @@ Chat.propTypes = {
   charlaTerminada: PropTypes.bool,
   historial: PropTypes.arrayOf(PropTypes.object).isRequired,
   sesion: PropTypes.string.isRequired,
+  servidorNoDisponible: PropTypes.bool.isRequired,
   usuarieEnvioMensaje: PropTypes.func.isRequired,
 };
 

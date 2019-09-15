@@ -36,7 +36,7 @@ function* inicializarChat() {
           type: actions.ESTADO_ESTABLECER_ALBERTO_PASEANDO_A_DYLAN,
         }),
         yield put({
-          type: actions.GENERAL_MARCAR_CHARLA_TERMINADA,
+          type: actions.GENERAL_SERVIDOR_NO_DISPONIBLE,
         }),
       ],
     );
