@@ -26,6 +26,7 @@ class Chat extends PureComponent {
     mensajeUsuario: '',
     mostrarModalDeAyuda: false,
     mostrarSobreNostros: false,
+    yaSeMostroMensajeDeInactividadInicial: false,
   }
 
   componentDidMount() {
@@ -44,8 +45,18 @@ class Chat extends PureComponent {
     if (historialActual !== historialAnterior) {
       // cancelar inactividad
       clearTimeout(this.timeoutDeInactividad);
-      this.timeoutDeInactividad = setTimeout(() => enviarMensajeDeInactividad(uuid(),
-        this.mensajeDeInactividad()), 35000);
+
+      this.timeoutDeInactividad = setTimeout(() => {
+        const { yaSeMostroMensajeDeInactividadInicial } = this.state;
+
+        if (!yaSeMostroMensajeDeInactividadInicial && historial.length > 1) {
+          this.setState({ yaSeMostroMensajeDeInactividadInicial: true });
+          return enviarMensajeDeInactividad(uuid(),
+            this.mensajeDeInactividad());
+        }
+        return false;
+      },
+      30000);
     }
 
     if (charlaTerminada) {
