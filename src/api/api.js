@@ -13,9 +13,9 @@ export async function probarSiHayConexion() {
   return respuesta;
 }
 
-export async function procesarMensaje(sessionId = 1, text = '') {
+export async function procesarMensaje(sessionId = 1, text = '', noTrack = false) {
 
-  const mensajeCodificadoEnJson = JSON.stringify({ sessionId, text });
+  const mensajeCodificadoEnJson = JSON.stringify({ sessionId, text, noTrack });
 
   const [respuesta] = await fetch(`${API_BASE_URL}/alberto/mensaje`, {
     ...API_HEADERS,

@@ -70,7 +70,8 @@ function* procesarMensajeDeUsuarie(action) {
     },
   });
 
-  const respuesta = yield api.procesarMensaje(sesion, mensaje);
+  const noTrack = yield select(state => !state.general.consentimientoDeColaboracion);
+  const respuesta = yield api.procesarMensaje(sesion, mensaje, noTrack);
 
 
   // TODO --> Extraer esta lógica a 3 funciones distintas
