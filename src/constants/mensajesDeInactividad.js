@@ -5,6 +5,5 @@ export const mensajesDeInactividadInicial = [
 ];
 
 export const mensajesDeInactividad = [
-  'Che, contame, ¿a quién vas a votar?',
   '¿Qué te gustaría saber sobre lo que voy a hacer si soy electo presidente?',
 ];
