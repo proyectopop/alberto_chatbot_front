@@ -32,6 +32,7 @@ class TextInput extends PureComponent {
     return (
       <div className="Input">
         <input
+          autoComplete="off"
           className="Input__Element accesible-no-focus"
           id="ChatInput"
           maxLength={60}
