@@ -1,55 +1,20 @@
 @import "../../../assets/sass/global.sass"
 
 select
-  width: 25%
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-position-y: calc(100% - 10px);
-  background-repeat: no-repeat;
   background-color: transparent
-  border: 0
   color: whitesmoke
   color: $color-secondary
   cursor: pointer
   font-family: inherit
   font-size: 1.4rem
   font-weight: bold
-  outline: 0
-  padding: 4px 0
-  @media screen and (max-width: 768px)
-    width: 29%
-    font-size: 1.3rem
+  margin-left: auto
+  margin-right: auto
 
 
 select:focus
   cursor: pointer
-  outline: none
 
 .selectfield
   position: relative
   box-sizing: border-box
-
-  &::after
-      position: absolute
-      top: 1.2em
-      right: 4.5rem
-      @media screen and (max-width: 340px)
-        right: -2px
-      @media screen and (min-width: 341px) and (max-width: 600px)
-        top: 10px
-        right: 20px
-      @media screen and (min-width: 601px) and (max-width: 768px)
-        top: 14px
-        right: -8px
-      @media screen and (min-width: 769px) and (max-width: 1024px)
-        top: 14px
-        right: 48px
-      width: 0
-      height: 0
-      border-left: .33em solid transparent
-      border-right: .33em solid transparent
-      border-top: .400em solid whitesmoke
-      content: ''
-      padding: 0
-      pointer-events: none
