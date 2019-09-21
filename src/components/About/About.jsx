@@ -63,7 +63,16 @@ const About = (props) => {
           ¿El chat-bot no respondió lo que querías? ¿Tenés alguna sugerencia
           sobre un tema en particular que creés que nuestro Alberto debería responder?
             <br />
-            <b>Podés escribirnos en Twitter o enviarnos un e-mail.</b>
+            <b>Podés escribirnos en { ' ' }
+              <a
+                href="https://twitter.com/alberto_charla"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+              Twitter
+              </a>  o enviarnos un { ' ' }
+              <a href="mailto:proyecto.pop.argentina@gmail.com">e-mail</a>.
+            </b>
           </p>
         </div>
 
