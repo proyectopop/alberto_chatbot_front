@@ -4,6 +4,7 @@ import Popover from 'react-simple-popover';
 
 import Logo from '../Logo/Logo';
 import MainButton from '../global/Buttons/MainButton';
+import Footer from '../Footer/Footer';
 import Consent from '../Consent/Consent';
 import Select from '../global/Select/Select';
 
@@ -73,6 +74,8 @@ export default class LandingSmallScreens extends PureComponent {
             clickHandler={botonPrincipalSeleccionado}
             text="Charlar con Alberto"
           />
+
+          <Footer />
 
         </div>
 

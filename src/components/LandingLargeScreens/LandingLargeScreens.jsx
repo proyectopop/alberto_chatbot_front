@@ -5,6 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import Loading from '../global/Loading/Loading';
 import MainButton from '../global/Buttons/MainButton';
+import Footer from '../Footer/Footer';
 import Consent from '../Consent/Consent';
 import Select from '../global/Select/Select';
 import Logo from '../Logo/Logo';
@@ -127,6 +128,7 @@ export default class LandingLargeScreens extends Component {
                 text="Charlar con Alberto"
               />
 
+              <Footer />
 
             </div>
           ) : <Loading />
