@@ -2,8 +2,9 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const API_HEADERS = {
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
+    "Access-Control-Allow-Origin": "*",
+    Accept: "application/json",
+    "Content-Type": "application/json",
   },
 };
 
